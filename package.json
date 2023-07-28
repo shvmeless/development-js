@@ -1,0 +1,36 @@
+{
+  "name": "@shvmeless/development",
+  "description": "A set of utilities to improve TypeScript development.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shvmeless/development-js.git"
+  },
+  "author": {
+    "name": "Luciano Aedo Puga",
+    "url": "https://github.com/shvmeless"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint ./src --ext .ts",
+    "build": "npm run lint && rm -rf ./dist && tsc"
+  },
+  "devDependencies": {
+    "@types/node": "18.16.20",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "eslint": "8.46.0",
+    "eslint-config-standard-with-typescript": "36.1.1",
+    "eslint-plugin-import": "2.28.0",
+    "eslint-plugin-n": "15.7.0",
+    "eslint-plugin-promise": "6.1.1",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.1.6"
+  }
+}
