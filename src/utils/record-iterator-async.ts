@@ -85,3 +85,20 @@ export async function reduceAsync <K extends string, V, N> (object: Record<K, V>
   }
   return accumulator
 }
+
+/**
+ * Converts the given object into an array.
+ * Different from Object.values() because it allows you to map the values.
+ * @param object The object to convert.
+ * @param callback The function to call for each property.
+ * @returns An array with the mapped values.
+*/
+export async function arrayAsync <K extends string, V, N> (object: Record<K, V>, callback: (value: V, key: K) => Promise<N>): Promise<N[]> {
+  const result: N[] = []
+  for (const [key, value] of entries(object)) {
+    const item = await callback(value, key)
+    if (item === undefined) continue
+    result.push(item)
+  }
+  return result
+}
