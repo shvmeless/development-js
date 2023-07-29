@@ -53,3 +53,18 @@ export function pick <K1 extends string, V, K2 extends K1> (object: Record<K1, V
   }
   return result as Record<K2, V>
 }
+
+/**
+ * Omits the specified properties from the given object.
+ * @param object The object to omit the properties from.
+ * @param props The properties to omit.
+ * @returns A copy of the given object without the specified properties.
+*/
+export function omit <K1 extends string, V, K2 extends K1> (object: Record<K1, V>, ...props: K2[]): Record<Exclude<K1, K2>, V> {
+  const result: Partial<Record<Exclude<K1, K2>, V>> = {}
+  for (const [key, value] of entries(object)) {
+    if (props.includes(key as K2)) continue
+    result[key as Exclude<K1, K2>] = value
+  }
+  return result as Record<Exclude<K1, K2>, V>
+}
