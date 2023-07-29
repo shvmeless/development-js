@@ -24,3 +24,16 @@ export function keys <K extends string> (object: Record<K, unknown>): K[] {
 export function values <V> (object: Record<string, V>): V[] {
   return Object.values(object)
 }
+
+/**
+ * Checks if the given object has all the given properties.
+ * @param object The object to check.
+ * @param props The properties to check for.
+ * @returns True if the object has all the given properties, false otherwise.
+*/
+export function has <K extends string> (object: Record<K, unknown>, ...props: K[]): boolean {
+  for (const prop of props) {
+    if (!keys(object).includes(prop)) return false
+  }
+  return true
+}
