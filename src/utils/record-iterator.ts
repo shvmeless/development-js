@@ -70,3 +70,18 @@ export function every <K extends string, V> (object: Record<K, V>, callback: (va
   }
   return true
 }
+
+/**
+ * Reduces all the properties of the given object into a single value.
+ * @param object The object to reduce.
+ * @param callback The function to call for each property.
+ * @param initialValue The initial value of the accumulator.
+ * @returns The accumulated value.
+*/
+export function reduce <K extends string, V, N> (object: Record<K, V>, callback: (previous: N, current: V, key: K) => N, initialValue: N): N {
+  let accumulator = initialValue
+  for (const [key, value] of entries(object)) {
+    accumulator = callback(accumulator, value, key)
+  }
+  return accumulator
+}
