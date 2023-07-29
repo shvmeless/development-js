@@ -42,3 +42,17 @@ export async function map <K extends string, V, N> (object: Record<K, V>, callba
   }
   return result as Record<K, N>
 }
+
+/**
+ * Checks if at lest one property of the given object passes the validation function.
+ * @param object The object to check.
+ * @param callback The function that validates each property.
+ * @returns True if all the properties pass the validation function, false otherwise.
+*/
+export async function some <K extends string, V> (object: Record<K, V>, callback: (value: V, key: K) => Promise<boolean>): Promise<boolean> {
+  for (const [key, value] of entries(object)) {
+    const result = await callback(value, key)
+    if (result) return true
+  }
+  return false
+}
