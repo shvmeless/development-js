@@ -56,3 +56,17 @@ export async function some <K extends string, V> (object: Record<K, V>, callback
   }
   return false
 }
+
+/**
+ * Checks if all the properties of the given object pass the validation function.
+ * @param object The object to check.
+ * @param callback The function that validates each property.
+ * @returns True if all the properties pass the validation function, false otherwise.
+*/
+export async function everyAsync <K extends string, V> (object: Record<K, V>, callback: (value: V, key: K) => Promise<boolean>): Promise<boolean> {
+  for (const [key, value] of entries(object)) {
+    const result = await callback(value, key)
+    if (!result) return false
+  }
+  return true
+}
