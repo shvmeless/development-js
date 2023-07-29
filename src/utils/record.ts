@@ -15,3 +15,12 @@ export function entries <K extends string, V> (object: Record<K, V>): [K, V][] {
 export function keys <K extends string> (object: Record<K, unknown>): K[] {
   return Object.keys(object) as K[]
 }
+
+/**
+ * Returns the values of the given object.
+ * @param object The object to get the values of.
+ * @returns The values of the given object.
+*/
+export function values <V> (object: Record<string, V>): V[] {
+  return Object.values(object)
+}
