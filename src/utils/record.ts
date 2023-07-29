@@ -1,5 +1,5 @@
 /**
- * Returns the key and value of each property of the given object.
+ * Extracts the `key` and `value` of all properties of an `object`.
  * @param object The object to get the entries of.
  * @returns The entries of the given object.
 */
@@ -8,7 +8,7 @@ export function entries <K extends string, V> (object: Record<K, V>): [K, V][] {
 }
 
 /**
- * Returns the keys of the given object.
+ * Extracts the `key` of all properties of an `object`.
  * @param object The object to get the keys of.
  * @returns The keys of the given object.
 */
@@ -17,7 +17,7 @@ export function keys <K extends string> (object: Record<K, unknown>): K[] {
 }
 
 /**
- * Returns the values of the given object.
+ * Extracts the `value` of all properties of an `object`.
  * @param object The object to get the values of.
  * @returns The values of the given object.
 */
@@ -26,7 +26,7 @@ export function values <V> (object: Record<string, V>): V[] {
 }
 
 /**
- * Checks if the given object has all the given properties.
+ * Checks if an `object` has all the given `keys`.
  * @param object The object to check.
  * @param props The properties to check for.
  * @returns True if the object has all the given properties, false otherwise.
@@ -39,7 +39,7 @@ export function has <K extends string> (object: Record<K, unknown>, ...props: K[
 }
 
 /**
- * Picks the specified properties from the given object.
+ * Picks the given `keys` from an `object`.
  * @param object The object to pick the properties from.
  * @param props The properties to pick.
  * @returns A copy of the given object with only the specified properties.
@@ -55,7 +55,7 @@ export function pick <K1 extends string, V, K2 extends K1> (object: Record<K1, V
 }
 
 /**
- * Omits the specified properties from the given object.
+ * Omits the given `keys` from an `object`.
  * @param object The object to omit the properties from.
  * @param props The properties to omit.
  * @returns A copy of the given object without the specified properties.
@@ -70,7 +70,7 @@ export function omit <K1 extends string, V, K2 extends K1> (object: Record<K1, V
 }
 
 /**
- * Merges two objects into a one.
+ * Merges the given `objects` into a single `object`.
  * @param object1 The first object to merge.
  * @param object2 The second object to merge.
  * @returns A new object with the properties of both objects.

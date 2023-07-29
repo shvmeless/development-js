@@ -1,7 +1,7 @@
 import { entries } from './record'
 
 /**
- * Iterates over each property of the given object.
+ * Calls the given `function` for each property of an `object`.
  * @param object The object to iterate over.
  * @param callback The function to call for each property.
 */
@@ -12,7 +12,7 @@ export async function forEach <K extends string, V> (object: Record<K, V>, callb
 }
 
 /**
- * Returns a copy of the given object with only the properties that pass the validation function.
+ * Filters the properties of an `object` using the given `function`.
  * @param object The object to filter.
  * @param callback The function that validates each property.
  * @returns A copy of the given object with only the properties that pass the validation function.
@@ -27,7 +27,7 @@ export async function filter <K extends string, V> (object: Record<K, V>, callba
 }
 
 /**
- * Maps each property of the given object.
+ * Maps the properties of an `object` using the given `function`.
  * If the callback returns undefined, the property will be omitted.
  * @param object The object to map.
  * @param callback The function to call for each property.
@@ -44,7 +44,7 @@ export async function map <K extends string, V, N> (object: Record<K, V>, callba
 }
 
 /**
- * Checks if at lest one property of the given object passes the validation function.
+ * Checks if any property of an `object` satisfies the given `function`.
  * @param object The object to check.
  * @param callback The function that validates each property.
  * @returns True if all the properties pass the validation function, false otherwise.
@@ -58,7 +58,7 @@ export async function some <K extends string, V> (object: Record<K, V>, callback
 }
 
 /**
- * Checks if all the properties of the given object pass the validation function.
+ * Checks if all properties of an `object` satisfy the given `function`.
  * @param object The object to check.
  * @param callback The function that validates each property.
  * @returns True if all the properties pass the validation function, false otherwise.
@@ -72,7 +72,7 @@ export async function everyAsync <K extends string, V> (object: Record<K, V>, ca
 }
 
 /**
- * Reduces all the properties of the given object into a single value.
+ * Reduces all properties of an `object` using the given `function`.
  * @param object The object to reduce.
  * @param callback The function to call for each property.
  * @param initialValue The initial value of the accumulator.
@@ -87,8 +87,7 @@ export async function reduceAsync <K extends string, V, N> (object: Record<K, V>
 }
 
 /**
- * Converts the given object into an array.
- * Different from Object.values() because it allows you to map the values.
+ * Reduces all properties of an `object` using the given `function`.
  * @param object The object to convert.
  * @param callback The function to call for each property.
  * @returns An array with the mapped values.
