@@ -68,3 +68,20 @@ export function omit <K1 extends string, V, K2 extends K1> (object: Record<K1, V
   }
   return result as Record<Exclude<K1, K2>, V>
 }
+
+/**
+ * Merges two objects into a one.
+ * @param object1 The first object to merge.
+ * @param object2 The second object to merge.
+ * @returns A new object with the properties of both objects.
+*/
+export function merge <K1 extends string, V1, K2 extends string, V2 > (object1: Record<K1, V1>, object2: Record<K2, V2>): Record<K1 | K2, V1 | V2> {
+  const result: Partial<Record<K1 | K2, V1 | V2>> = {}
+  for (const [key, value] of entries(object1)) {
+    result[key] = value
+  }
+  for (const [key, value] of entries(object2)) {
+    result[key] = value
+  }
+  return result as Record<K1 | K2, V1 | V2>
+}
