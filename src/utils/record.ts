@@ -37,3 +37,19 @@ export function has <K extends string> (object: Record<K, unknown>, ...props: K[
   }
   return true
 }
+
+/**
+ * Picks the specified properties from the given object.
+ * @param object The object to pick the properties from.
+ * @param props The properties to pick.
+ * @returns A copy of the given object with only the specified properties.
+*/
+export function pick <K1 extends string, V, K2 extends K1> (object: Record<K1, V>, ...props: K2[]): Record<K2, V> {
+  const result: Partial<Record<K2, V>> = {}
+  for (const prop of props) {
+    if (!keys(object).includes(prop)) continue
+    const value = object[prop]
+    result[prop] = value
+  }
+  return result as Record<K2, V>
+}
