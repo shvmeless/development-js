@@ -1,0 +1,36 @@
+// IMPORTS
+import { dictionary } from '../../src/libs/dictionary-functions'
+import { Dictionary } from '../../src/libs/dictionary'
+import { describe, test, expect } from 'vitest'
+
+// TESTS
+describe('.values()', () => {
+  test('object is empty', () => {
+
+    const object: Record<string, number> = {}
+
+    const r1 = dictionary(object).values()
+    expect(r1).toStrictEqual([])
+
+    const r2 = Dictionary.from(object).values()
+    expect(r2).toStrictEqual([])
+
+    const r3 = new Dictionary(object).values()
+    expect(r3).toStrictEqual([])
+
+  })
+  test('object is not empty', () => {
+
+    const object = { a: 1, b: 2, c: 3 }
+
+    const r1 = dictionary(object).values()
+    expect(r1).toStrictEqual([1, 2, 3])
+
+    const r2 = Dictionary.from(object).values()
+    expect(r2).toStrictEqual([1, 2, 3])
+
+    const r3 = new Dictionary(object).values()
+    expect(r3).toStrictEqual([1, 2, 3])
+
+  })
+})
