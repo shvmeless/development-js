@@ -1,5 +1,5 @@
 {
-  "name": "@shvmeless/development",
+  "name": "@shvmerc/development",
   "description": "This package provides some tools to improve `javascript` and `typescript` development.",
   "version": "0.1.0-alpha",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "test:watch": "vitest --reporter=basic",
     "dev": "ts-node ./src/index.ts",
     "dev:watch": "ts-node-dev --respawn --clear ./src/index.ts",
-    "build": "tsc -p ./tsconfig.prod.json",
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.prod.json",
     "pack": "npm pack"
   },
   "devDependencies": {

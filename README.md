@@ -17,7 +17,7 @@ Provides a set of functions that perform various operations and transformations 
 Functions that performs modifications will return a new object instead.
 
 ```ts
-const { dictionary } = require('@shvmeless/development')
+const { dictionary } = require('@shvmerc/development')
 
 const object = { a: 1, b: 2, c: 3 }
 
@@ -39,7 +39,7 @@ Creates an instance of the `Dictionary` class linked to the provided object. The
 Methods that perform modifications will return `this` instead of returning the object directly, requiring the use of the `.value()` method to get the actual object.
 
 ```ts
-const { Dictionary } = require('@shvmeless/development')
+const { Dictionary } = require('@shvmerc/development')
 
 const object = { a: 1, b: 2, c: 3 }
 
