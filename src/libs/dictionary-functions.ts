@@ -170,5 +170,130 @@ export function dictionary<V> (object: Record<string, V>) {
       return object
     },
 
+    /**
+     * Executes the provided callback function once for each property in the object.
+    */
+    forEach: (callback: (value: V, key: string, object: Record<string, V>) => void): void => {
+      for (const [key, value] of dictionary(object).entries()) {
+        callback(value, key, object)
+      }
+    },
+
+    /**
+     * Checks if at least one property in the object satisfies the provided condition.
+    */
+    some: (callback: (value: V, key: string, object: Record<string, V>) => boolean): boolean => {
+      for (const [key, value] of dictionary(object).entries()) {
+        const condition = callback(value, key, object)
+        if (condition) return true
+      }
+      return false
+    },
+
+    /**
+     * Checks if all properties in the object satisfies the provided condition.
+    */
+    every: (callback: (value: V, key: string, object: Record<string, V>) => boolean): boolean => {
+      for (const [key, value] of dictionary(object).entries()) {
+        const condition = callback(value, key, object)
+        if (!condition) return false
+      }
+      return true
+    },
+
+    /**
+     * Finds the first property in the object that satisfies the provided condition.
+    */
+    find: (callback: (value: V, key: string, object: Record<string, V>) => boolean): [string, V] | undefined => {
+      for (const [key, value] of dictionary(object).entries()) {
+        const condition = callback(value, key, object)
+        if (condition) return [key, value]
+      }
+      return undefined
+    },
+
+    /**
+     * Creates a new object that includes only the properties that satisfies the provided condition.
+    */
+    filter: (callback: (value: V, key: string, object: Record<string, V>) => boolean): Record<string, V> => {
+      const result: Record<string, V> = {}
+      for (const [key, value] of dictionary(object).entries()) {
+        const condition = callback(value, key, object)
+        if (condition) result[key] = value
+      }
+      return result
+    },
+
+    /**
+     * Creates a new object, renaming the original properties based on the provided callback function.
+    */
+    rename: (callback: (value: V, key: string, object: Record<string, V>) => (string | undefined)): Record<string, V> => {
+      const result: Record<string, V> = {}
+      for (const [key, value] of dictionary(object).entries()) {
+        const name = callback(value, key, object)
+        if (name !== undefined) result[name] = value
+      }
+      return result
+    },
+
+    /**
+     * Creates a new object, transforming the original values based on the provided callback function.
+    */
+    map: <V2> (callback: (value: V, key: string, object: Record<string, V>) => (V2 | undefined)): Record<string, V2> => {
+      const result: Record<string, V2> = {}
+      for (const [key, value] of dictionary(object).entries()) {
+        const item = callback(value, key, object)
+        if (item !== undefined) result[key] = item
+      }
+      return result
+    },
+
+    /**
+     * Creates a new object, renaming and transforming the original properties based on the provided callback function.
+    */
+    remake: <V2> (callback: (value: V, key: string, object: Record<string, V>) => ([string, V2] | undefined)): Record<string, V2> => {
+      const result: Record<string, V2> = {}
+      for (const [key, value] of dictionary(object).entries()) {
+        const item = callback(value, key, object)
+        if (item !== undefined) result[item[0]] = item[1]
+      }
+      return result
+    },
+
+    /**
+     * Creates an array of values based on a provided callback function.
+    */
+    array: <V2> (callback: (value: V, key: string, object: Record<string, V>) => (V2 | undefined)): Array<V2> => {
+      const result: Array<V2> = []
+      for (const [key, value] of dictionary(object).entries()) {
+        const item = callback(value, key, object)
+        if (item !== undefined) result.push(item)
+      }
+      return result
+    },
+
+    /**
+     * Counts the number of properties in the object that satisfies a provided condition.
+    */
+    count: (callback: (value: V, key: string, object: Record<string, V>) => boolean): number => {
+      let count = 0
+      for (const [key, value] of dictionary(object).entries()) {
+        const condition = callback(value, key, object)
+        if (condition) count++
+      }
+      return count
+    },
+
+    /**
+     * Reduces the object to a single value based on a provided callback function.
+    */
+    reduce: <N>(callback: (prev: N, value: V, key: string, object: Record<string, V>) => N, initial: N): N => {
+      let result = initial
+      for (const [key, value] of dictionary(object).entries()) {
+        result = callback(result, value, key, object)
+      }
+      return result
+    },
+
   }
 }
