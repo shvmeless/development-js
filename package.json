@@ -1,0 +1,46 @@
+{
+  "name": "@shvmeless/development",
+  "description": "This package provides some tools to improve `javascript` and `typescript` development.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Luciano Aedo Puga",
+    "url": "https://github.com/shvmeless"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shvmeless/development-js.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint ./src --ext .ts",
+    "test": "vitest run --reporter=basic",
+    "test:watch": "vitest --reporter=basic",
+    "dev": "ts-node ./src/index.ts",
+    "dev:watch": "ts-node-dev --respawn --clear ./src/index.ts",
+    "build": "tsc -p ./tsconfig.prod.json",
+    "pack": "npm pack"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.28",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "eslint": "8.57.0",
+    "eslint-config-love": "43.1.0",
+    "eslint-config-standard": "17.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-n": "16.6.2",
+    "eslint-plugin-promise": "6.1.1",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.4.2",
+    "vitest": "1.4.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "include": [
+    "./src/**/*",
+    "./tests/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist"
+  ],
+  "compilerOptions": {
+    "rootDir": ".",
+  }
+}
