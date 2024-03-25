@@ -1,7 +1,7 @@
 {
   "name": "@shvmeless/development",
   "description": "This package provides some tools to improve `javascript` and `typescript` development.",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "license": "MIT",
   "author": {
     "name": "Luciano Aedo Puga",
@@ -21,6 +21,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "object",
+    "record",
+    "dictionary",
+    "iterator",
+    "helper",
+    "tool"
+  ],
   "scripts": {
     "lint": "eslint ./src --ext .ts",
     "test": "vitest run --reporter=basic",
