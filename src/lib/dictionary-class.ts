@@ -191,4 +191,137 @@ export class Dictionary<V> implements DictionaryMethods<V> {
     return this
   }
 
+  /**
+   * Executes the provided callback function once for each property in the object.
+  */
+  public forEach (callback: (value: V, key: string, object: Record<string, V>) => void): void {
+    for (const [key, value] of this.entries()) {
+      callback(value, key, this.value)
+    }
+  }
+
+  /**
+   * Checks if at least one property in the object satisfies the provided condition.
+  */
+  public some (callback: (value: V, key: string, object: Record<string, V>) => boolean): boolean {
+    for (const [key, value] of this.entries()) {
+      const condition = callback(value, key, this.value)
+      if (!condition) continue
+      return true
+    }
+    return false
+  }
+
+  /**
+   * Checks if all properties in the object satisfies the provided condition.
+  */
+  public every (callback: (value: V, key: string, object: Record<string, V>) => boolean): boolean {
+    for (const [key, value] of this.entries()) {
+      const condition = callback(value, key, this.value)
+      if (condition) continue
+      return false
+    }
+    return true
+  }
+
+  /**
+   * Finds the first property in the object that satisfies the provided condition.
+  */
+  public find (callback: (value: V, key: string, object: Record<string, V>) => boolean): ([string, V] | undefined) {
+    for (const [key, value] of this.entries()) {
+      const condition = callback(value, key, this.value)
+      if (!condition) continue
+      return [key, value]
+    }
+    return undefined
+  }
+
+  /**
+   * Removes the properties that not satisfies the provided condition.
+  */
+  public filter (callback: (value: V, key: string, object: Record<string, V>) => boolean): this {
+    for (const [key, value] of this.entries()) {
+      const condition = callback(value, key, this.value)
+      if (condition) continue
+      delete this.value[key]
+    }
+    return this
+  }
+
+  /**
+   * Rename the properties based on the provided callback function.
+  */
+  public rename (callback: (value: V, key: string, object: Record<string, V>) => (string | undefined)): this {
+    for (const [key, value] of this.entries()) {
+      const name = callback(value, key, this.value)
+      delete this.value[key]
+      if (name === undefined) continue
+      this.value[name] = value
+    }
+    return this
+  }
+
+  /**
+   * Transform the property values based on the provided callback function.
+  */
+  public map <V2> (callback: (value: V, key: string, object: Record<string, V>) => (V2 | undefined)): Dictionary<V2> {
+    const result: Record<string, V2> = {}
+    for (const [key, value] of this.entries()) {
+      const item = callback(value, key, this.value)
+      if (item === undefined) continue
+      result[key] = item
+    }
+    return new Dictionary(result)
+  }
+
+  /**
+   * Rename and transform the properties based on the provided callback function.
+  */
+  public remake <V2> (callback: (value: V, key: string, object: Record<string, V>) => ([string, V2] | undefined)): Dictionary<V2> {
+    const result: Record<string, V2> = {}
+    for (const [key, value] of this.entries()) {
+      const [newKey, newValue] = callback(value, key, this.value) ?? [undefined, undefined]
+      if (newKey === undefined || newValue === undefined) continue
+      result[newKey] = newValue
+    }
+    return new Dictionary(result)
+  }
+
+  /**
+   * Creates an array of values based on a provided callback function.
+  */
+  public array <V2> (callback: (value: V, key: string, object: Record<string, V>) => (V2 | undefined)): Array<V2> {
+    const result: Array<V2> = []
+    for (const [key, value] of this.entries()) {
+      const item = callback(value, key, this.value)
+      if (item === undefined) continue
+      result.push(item)
+    }
+    return result
+  }
+
+  /**
+   * Counts the number of properties in the object that satisfies a provided condition.
+  */
+  public count (callback: (value: V, key: string, object: Record<string, V>) => boolean): number {
+    let count = 0
+    for (const [key, value] of this.entries()) {
+      const condition = callback(value, key, this.value)
+      if (!condition) continue
+      count++
+    }
+    return count
+  }
+
+  /**
+   * Reduces the object to a single value based on a provided callback function.
+  */
+  public reduce <N>(callback: (prev: N, value: V, key: string, object: Record<string, V>) => N, initial: N): N {
+    let result = initial
+    for (const [key, value] of this.entries()) {
+      result = callback(result, value, key, this.value)
+    }
+    return result
+  }
+
 }
