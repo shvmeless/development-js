@@ -20,10 +20,17 @@
     "access": "public"
   },
   "scripts": {
+    "lint": "eslint ./src",
     "build": "rm -rf ./dist && tsc -p ./tsconfig.json"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@stylistic/eslint-plugin": "^2.12.1",
     "@types/node": "^22.10.5",
-    "typescript": "^5.7.2"
+    "eslint": "^9.17.0",
+    "eslint-config-love": "^114.0.0",
+    "globals": "^15.14.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.19.0"
   }
 }
