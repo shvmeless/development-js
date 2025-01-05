@@ -1,0 +1,29 @@
+{
+  "name": "@shvmeless/development",
+  "description": "Tools designed to enhance JavaScript and TypeScript development.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Luciano Aedo Puga",
+    "url": "https://github.com/shvmeless"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shvmeless/development-js.git"
+  },
+  "files": [ "dist" ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2"
+  }
+}
