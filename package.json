@@ -1,7 +1,7 @@
 {
   "name": "@shvmeless/development",
   "description": "Tools designed to enhance JavaScript and TypeScript development.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "author": {
     "name": "Luciano Aedo Puga",
@@ -19,6 +19,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "development",
+    "utilities",
+    "tools",
+    "dictionary",
+    "record",
+    "object"
+  ],
   "scripts": {
     "lint": "eslint ./src",
     "build": "rm -rf ./dist && tsc -p ./tsconfig.prod.json",
