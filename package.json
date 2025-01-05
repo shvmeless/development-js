@@ -21,7 +21,9 @@
   },
   "scripts": {
     "lint": "eslint ./src",
-    "build": "rm -rf ./dist && tsc -p ./tsconfig.json"
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.prod.json",
+    "test": "vitest run --reporter=basic",
+    "test:watch": "vitest --reporter=basic"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -31,6 +33,7 @@
     "eslint-config-love": "^114.0.0",
     "globals": "^15.14.0",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.19.0"
+    "typescript-eslint": "^8.19.0",
+    "vitest": "^2.1.8"
   }
 }
